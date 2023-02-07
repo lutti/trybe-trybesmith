@@ -10,15 +10,15 @@ const getAll = async (): Promise<IProduct[]> => {
   return rows;
 };
 
-const createProduct = async (prod: IProduct): Promise<ResultSetHeader> => {
+const createProduct = async (prod: IProduct): Promise<IProduct> => {
   const [result] = await connection.execute<ResultSetHeader>(
     `INSERT INTO Trybesmith.products
     (name, amount, order_id)
     VALUES( ?, ?, ?);`,
-    [prod.name, prod.amount, +prod.orderId],
+    [prod.name, prod.amount, null],
   );
-  console.log(result);
-  return result;
+  const retorno = { ...prod, id: result.insertId };
+  return retorno;
 };
 
 export default { getAll, createProduct };

@@ -7,13 +7,12 @@ const getAll = async (req: Request, res: Response) => {
   return res.status(200).json(users);
 };
 
-// // const login = async (req: Request<{}, {}, TLogin>, res: Response) => {
-// const login = async (req: Request, res: Response) => {
-//   const { body } = req;
+const createProduct = async (req: Request, res: Response) => {
+  const { name, amount } = req.body;
+  if (!name || !amount) return res.status(400).json({ message: 'Campos faltantes' });
 
-//   const token = await userService.login(body);
+  const product = await productService.createProduct(req.body);
+  return res.status(201).json(product);
+};
 
-//   return res.status(200).json({ token })
-// }
-
-export default { getAll };
+export default { getAll, createProduct };
