@@ -1,5 +1,5 @@
 import { RowDataPacket, ResultSetHeader } from 'mysql2/promise';
-import IProduct from '../interfaces';
+import { IProduct } from '../interfaces';
 import connection from './connection';
 
 const getAll = async (): Promise<IProduct[]> => {
