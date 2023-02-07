@@ -12,3 +12,9 @@ export interface IUser {
   level: number,
   password: string
 }
+
+export interface IOrder {
+  id: number,
+  orderId: number,
+  productsIds: number[]
+}
